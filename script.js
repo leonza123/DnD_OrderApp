@@ -1,5 +1,6 @@
 // Data
 var encodedURL = "\u0018\u0011\u000e\u0014\u0016VAF\r\b\u0005\u001dW\u0005\u0015\u0005@\n\u0004\u0004_\u0004\n\rJ\u001a_F\u000f\u0007\u0014\u0016\u001f\u0017\u0016\u0005\u0001\u00074QITJ]]]_[^PGQKQTC";
+var decodedURL = "";
 var loadedOrder = [];
 var gameID = "";
 var decodingKey = "";
@@ -47,6 +48,7 @@ function getSession() {
 	isAdmin = urlParams.get('admin') ? true : false;
 	
 	if (decodingKey && decodingKey.length > 0 && gameID && gameID.length > 0) {
+		decodedURL = xorCipher(encodedURL, decodingKey);
 		orderInterval = setInterval(() => {
 		  getOrder();
 		}, 2000);
@@ -66,7 +68,7 @@ function checkOrder(newOrder) {
 
 function getOrder() {
 	$.ajax({
-		url: xorCipher(encodedURL, decodingKey) + gameID,
+		url: decodedURL + gameID,
 		type: "GET",
 		success: function (data) {
 			var parsedData = data;
@@ -88,7 +90,7 @@ function changeOrder() {
 	let jsonData = [{ "order": moveFirstToEnd(loadedOrder) }];
 	
 	$.ajax({
-		url: xorCipher(encodedURL, decodingKey) + gameID,
+		url: decodedURL + gameID,
 		type: "PUT",
 		contentType: "application/json",
 		data: JSON.stringify(jsonData),
