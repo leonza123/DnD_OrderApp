@@ -12,3 +12,12 @@ body {
 	visibility: hidden;
 	display: none;
 }
+
+@media (max-width: 992px) {
+
+	.alert {
+		padding: 3rem 5rem !important;
+		font-size: 4rem;
+	}
+	
+}
