@@ -49,7 +49,9 @@ function getSession() {
 	if (decodingKey && decodingKey.length > 0 && gameID && gameID.length > 0) {
 		orderInterval = setInterval(() => {
 		  getOrder();
-		}, 3000);
+		}, 2000);
+	} else {
+		$("#orderSet").text("Error detected.");
 	}
 }
 getSession();
