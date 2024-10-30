@@ -1,1 +1,1 @@
-This project is only for small group of ebas
+This project is only for small group of ebas.
